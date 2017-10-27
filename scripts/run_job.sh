@@ -25,6 +25,7 @@ ENDSSH
 #ENDSSH
 
 echo "Launch job..."
-ssh bass01 JOB=$job MAIN_CLASS=$main_class 'bash -s' <<'ENDSSH'
-yarn jar project2-1.0.jar $MAIN_CLASS /tmp/cs686/nam/nam_mini.tdv /tmp/mclement2/$JOB
+nam_files="`$(dirname $0)/list_nam_files.sh | sed 's/ /,/g'`"
+ssh bass01 JOB=$job MAIN_CLASS=$main_class NAM_FILES="$nam_files" 'bash -s' <<'ENDSSH'
+yarn jar project2-1.0.jar $MAIN_CLASS "$NAM_FILES" /tmp/mclement2/$JOB
 ENDSSH
