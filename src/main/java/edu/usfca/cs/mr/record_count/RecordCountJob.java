@@ -19,7 +19,7 @@ public class RecordCountJob {
             Configuration conf = new Configuration();
             // Give the MapRed job a name. You'll see this name in the Yarn
             // webapp.
-            Job job = Job.getInstance(conf, "record count job");
+            Job job = Job.getInstance(conf, "record_count_job");
             // Current class.
             job.setJarByClass(RecordCountJob.class);
             // Mapper
@@ -37,7 +37,7 @@ public class RecordCountJob {
             job.setOutputKeyClass(Text.class);
             job.setOutputValueClass(IntWritable.class);
             // path to input in HDFS
-            FileInputFormat.addInputPath(job, new Path(args[0]));
+            FileInputFormat.addInputPaths(job, args[0]);
             // path to output in HDFS
             FileOutputFormat.setOutputPath(job, new Path(args[1]));
             // Block until the job is completed.
