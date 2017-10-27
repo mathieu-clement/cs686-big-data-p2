@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
 ssh bass01 'bash -s' <<'ENDSSH'
-yarn application -list  | awk '$4 == "mclement2" { print $1; }'
+yarn application -list  | awk '$4 == "mclement2" { print $1; print $8; }'
 ENDSSH
