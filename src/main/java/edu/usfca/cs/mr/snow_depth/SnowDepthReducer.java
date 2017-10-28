@@ -16,10 +16,10 @@ public class SnowDepthReducer extends Reducer<Text, FloatWritable, Text, FloatWr
     @Override
     protected void reduce(Text key, Iterable<FloatWritable> values, Context context)
             throws IOException, InterruptedException {
-        float total = 0;
+        float total = 0f;
         int count = 0;
         boolean hasNonZeroValue = false;
-        // calculate the total count
+
         for (FloatWritable val : values) {
             count++;
             float f = val.get();
@@ -28,9 +28,10 @@ public class SnowDepthReducer extends Reducer<Text, FloatWritable, Text, FloatWr
                 hasNonZeroValue = true;
             }
         }
+
         float average = total / (float) count;
         if (!hasNonZeroValue && average > 0f) {
-            context.write(key, new FloatWritable(average));
+            context.write(new Text(key.toString().substring(0, 3)), new FloatWritable(average));
         }
     }
 

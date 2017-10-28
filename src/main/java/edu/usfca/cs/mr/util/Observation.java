@@ -7,7 +7,7 @@ public class Observation {
      * Returns specific features with correct Java type
      * @param tdv Tab-separated values
      * @param indices Indices of features, starting at index 1, sorted asc.
-     * @param deserializationClasses one of: {@link String}, {@link Integer}, {@link Float}, {@link Double}, {@link SpatialRange} (from Geohash)
+     * @param deserializationClasses one of: {@link String}, {@link Integer}, {@link Float}, {@link Double}, {@link Boolean}, {@link SpatialRange} (from Geohash)
      * @return asked features
      * @see <a href="https://www.cs.usfca.edu/~mmalensek/courses/cs686/projects/project-2-data.html">Data dictionary</a>
      */
@@ -34,9 +34,10 @@ public class Observation {
 
     private static Object toObject(String s, Class c) {
         if (c == String.class) return s;
-        if (c == Integer.class) return Integer.parseInt(s);
         if (c == Float.class) return Float.parseFloat(s);
         if (c == Double.class) return Double.parseDouble(s);
+        if (c == Boolean.class) return "1".equals(s);
+        if (c == Integer.class) return Integer.parseInt(s);
         if (c == SpatialRange.class) return Geohash.decodeHash(s);
         throw new IllegalArgumentException("Class " + c.getName() + " is not supported.");
     }
