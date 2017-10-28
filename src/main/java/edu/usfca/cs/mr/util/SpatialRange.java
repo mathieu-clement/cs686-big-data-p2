@@ -1,5 +1,7 @@
 package edu.usfca.cs.mr.util;
 
+import java.util.Objects;
+
 public class SpatialRange {
     private float upperLat;
     private float lowerLat;
@@ -60,4 +62,19 @@ public class SpatialRange {
                                lowerLon + lonDistance);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SpatialRange that = (SpatialRange) o;
+        return Float.compare(that.upperLat, upperLat) == 0 &&
+                Float.compare(that.lowerLat, lowerLat) == 0 &&
+                Float.compare(that.upperLon, upperLon) == 0 &&
+                Float.compare(that.lowerLon, lowerLon) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(upperLat, lowerLat, upperLon, lowerLon);
+    }
 }
