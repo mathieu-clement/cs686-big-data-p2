@@ -10,7 +10,7 @@ The project specification defines several questions that you will answer with Ma
 
 ## Deliverable I
 
-#### How many records are in the dataset?
+#### How many records are in the dataset? ([record_count](src/main/java/edu/usfca/cs/mr/record_count/))
 
 The program outputs: `<records, 323759744>`
 
@@ -20,6 +20,8 @@ We can compare this to the number of records that we see in the statistics at th
         Map input records=323759744
         Map output records=323759744
         Combine input records=323759744
+        
+#### Are there any Geohashes that have snow depths greater than zero for the entire year? List them all. ([snow_depth](src/main/java/edu/usfca/cs/mr/snow_depth/))
 
 ## Deliverable II
 
