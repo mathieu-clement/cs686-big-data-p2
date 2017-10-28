@@ -10,7 +10,11 @@ The project specification defines several questions that you will answer with Ma
 
 ## Deliverable I
 
-Responses go here.
+#### How many records are in the dataset?
+
+The program outputs: <records, 323759744>.
+
+We can compare this to the number of records that we see when running the job: TODO
 
 ## Deliverable II
 
