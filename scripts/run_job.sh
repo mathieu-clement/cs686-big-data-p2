@@ -2,8 +2,8 @@
 
 set -e
 
-if [ "$#" -ne 2 ]; then
-  echo "Usage: $0 job_name main_class" >&2
+if [ "$#" -ne 2 ] && [ "$#" -ne 3 ]; then
+  echo "Usage: $0 job_name main_class [--mini]" >&2
   exit 1
 fi
 
@@ -25,7 +25,11 @@ ENDSSH
 #ENDSSH
 
 echo "Launch job..."
-nam_files="`$(dirname $0)/list_nam_files.sh | sed 's/ /,/g'`"
+nam_files=/tmp/cs686/nam/nam_mini.tdv
+if [ "$3" != "--mini" ]; then
+    nam_files="`$(dirname $0)/list_nam_files.sh | sed 's/ /,/g'`"
+fi
+
 ssh bass01 JOB=$job MAIN_CLASS=$main_class NAM_FILES="$nam_files" 'bash -s' <<'ENDSSH'
 yarn jar project2-1.0.jar $MAIN_CLASS "$NAM_FILES" /tmp/mclement2/$JOB
 ENDSSH
