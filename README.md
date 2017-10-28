@@ -21,6 +21,8 @@ We can compare this to the number of records that we see in the statistics at th
         Map output records=323759744
         Combine input records=323759744
         
+The mini dataset contains 525584 records for 03/14/2015 and 525584 records for 03/15/2015.
+        
 #### Are there any Geohashes that have snow depths greater than zero for the entire year? List them all. ([snow_depth](src/main/java/edu/usfca/cs/mr/snow_depth/))
 
 To answer this question, I have used feature #51 "snow_depth_surface", eliminated all geohashes that have one or more zero values (I consider zero, any measurement under 0.001", i.e. less than 1 mm => the unit is in meters). The geohash has been reduced to a 3 character prefix (78 km [accuracy](https://gis.stackexchange.com/a/115501)).
