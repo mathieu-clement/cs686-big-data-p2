@@ -12,9 +12,14 @@ The project specification defines several questions that you will answer with Ma
 
 #### How many records are in the dataset?
 
-The program outputs: <records, 323759744>.
+The program outputs: `<records, 323759744>`
 
-We can compare this to the number of records that we see when running the job: TODO
+We can compare this to the number of records that we see in the statistics at the end of the job: 
+
+    Map-Reduce Framework
+        Map input records=323759744
+        Map output records=323759744
+        Combine input records=323759744
 
 ## Deliverable II
 
