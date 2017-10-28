@@ -11,7 +11,7 @@ public class Observation {
      * @return asked features
      * @see <a href="https://www.cs.usfca.edu/~mmalensek/courses/cs686/projects/project-2-data.html">Data dictionary</a>
      */
-    public static Object[] getFeatures(String tdv, int[] indices, Class[] deserializationClasses) {
+    public static Object[] getFeatures(String tdv, int[] indices, Class<?>[] deserializationClasses) {
         Object[] result = new Object[indices.length];
 
         StringTokenizer itr = new StringTokenizer(tdv);
@@ -32,7 +32,7 @@ public class Observation {
         return result;
     }
 
-    private static Object toObject(String s, Class c) {
+    private static Object toObject(String s, Class<?> c) {
         if (c == String.class) return s;
         if (c == Float.class) return Float.parseFloat(s);
         if (c == Double.class) return Double.parseDouble(s);

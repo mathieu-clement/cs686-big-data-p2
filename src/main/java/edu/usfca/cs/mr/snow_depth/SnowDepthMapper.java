@@ -20,7 +20,7 @@ public class SnowDepthMapper extends Mapper<LongWritable, Text, Text, FloatWrita
         Object[] features = Observation.getFeatures(
                 value.toString(),
                 new int[]{2, 51},
-                new Class[]{String.class, Float.class});
+                new Class<?>[]{String.class, Float.class});
         String geohash = ((String) features[0]).substring(0, 4);
         float snowDepth = (float) features[1]; // in meters
 

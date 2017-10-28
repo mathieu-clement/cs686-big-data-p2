@@ -14,7 +14,7 @@ public class HottestTemperatureMapper extends Mapper<LongWritable, Text, Geohash
         Object[] features = Observation.getFeatures(
                 value.toString(),
                 new int[]{1, 2, 41},
-                new Class[]{String.class, String.class, Float.class});
+                new Class<?>[]{String.class, String.class, Float.class});
         String timestamp = (String) features[0];
         String geohash = (String) features[1];
         float temperature = (float) features[2];
