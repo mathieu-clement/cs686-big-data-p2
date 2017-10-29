@@ -31,7 +31,7 @@ public class SnowDepthReducer extends Reducer<Text, FloatWritable, Text, FloatWr
 
         float average = total / (float) count;
         if (!hasNonZeroValue && average > 0f) {
-            context.write(new Text(key.toString().substring(0, 3)), new FloatWritable(average));
+            context.write(new Text(key/*.toString().substring(0, 3)*/), new FloatWritable(average));
         }
     }
 
