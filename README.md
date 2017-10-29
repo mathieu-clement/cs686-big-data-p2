@@ -84,7 +84,7 @@ During this year of travel, I would like to visit:
   * Freezing rain (categorical_freezing_rain_yes1_no0_surface): 0 ;
   * Visibility (visibility_surface): > 5000.
  
-To calculate the wind speed from the u and v vectors ("components") of the wind, we apply the formula:
+To calculate the [wind speed](http://colaweb.gmu.edu/dev/clim301/lectures/wind/wind-uv.html) from the u and v vectors ("components") of the wind, we apply the formula:
 
 ![ws=sqrt(u^2+v^2](https://latex.codecogs.com/gif.latex?\box{ws}&space;=&space;\sqrt{u^2&space;&plus;&space;v^2)
  
