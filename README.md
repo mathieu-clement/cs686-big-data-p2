@@ -12,16 +12,21 @@ The project specification defines several questions that you will answer with Ma
 
 #### How many records are in the dataset? ([record_count](src/main/java/edu/usfca/cs/mr/record_count/))
 
-The program outputs: `<records, 323759744>`
+The program outputs: `<records, 323,759,744>`
 
 We can compare this to the number of records that we see in the statistics at the end of the job: 
 
     Map-Reduce Framework
-        Map input records=323759744
-        Map output records=323759744
-        Combine input records=323759744
+        Map input records=323,759,744
+        Map output records=323,759,744
+        Combine input records=323,759,744
         
-The mini dataset contains 525584 records for 03/14/2015 and 525584 records for 03/15/2015.
+(commas added for readability)
+
+To put this in context, the population of the United States happens to be exactly the same: 323.1 million.
+
+
+The mini dataset contains 525,584 records for 03/14/2015 and 525,584 records for 03/15/2015.
         
 #### Are there any Geohashes that have snow depths greater than zero for the entire year? List them all. ([snow_depth](src/main/java/edu/usfca/cs/mr/snow_depth/))
 
@@ -33,13 +38,28 @@ To answer this question, I  used feature #51 "snow_depth_surface", eliminated al
 
 #### When and where was the hottest temperature observed in the dataset? Is it an anomaly? ([hottest_temperature](src/main/java/edu/usfca/cs/mr/hottest_temperature/))
 
-Here is the top 50 (geohash kept to original length / precision):
+Here is the top 10 (geohash kept to original length / precision):
 
 | Geohash | Address | Temperature [°C] |
 | --- | --- | ---: |
-| abcde | TODO | 123.45 |
+| 9g77v81phcu0 | Veracruz de Ignacio de la Llave, México | 57.5795 |
+| 9g7eb0mjs2zb | Veracruz de Ignacio de la Llave, México | 57.5795 |
+| d5dpds10m55b | Quintana Roo, México | 57.636627 |
+| 9g7322m79vh0 | Oaxaca, México | 57.7045 |
+| d5f04xyhucez | Quintana Roo, México | 57.761627 |
+| d5f04xyhucez | Quintana Roo, México | 57.86563 |
+| d5f0jqerq27b | Cancún, Quintana Roo, México | 57.94571 |
+| d5f0jqerq27b | Cancún, Quintana Roo, México | 57.99063 |
+| d5dpds10m55b | Quintana Roo, México | 58.024323 |
+| d5dpds10m55b | Quintana Roo, México | 58.24063 |
 
-For this exercise I had some trouble. I tried to use my own WritableComparable, but wasn't able to run the job due to a lack of memory apparently. In the process I wrote a little utility to reverse geocode a geohash to an address using the Python Geohash library and querying the Nominatim web service (used by OpenStreetMap).
+For this exercise I had some trouble. I tried to use my own WritableComparable, but wasn't able to run the job due to a lack of memory apparently. Then the reduce part hanged for a long time. And finally there was the issue of sorting the data. For that I downloaded the output files to the disk, and ran:
+
+    LC_ALL=C sort -k2 -n -S 80% part* | grep -v 'E-' 
+    
+`LC_ALL=C` given for reference, will speed up alphanumeric sorts dramatically, avoids UTF-8 type comparisons. `-k2` sorts using the second column (here, the temperature). `-S 80%` permits sort to use 80 % of the system memory. The output is piped to grep to exclude (`-v`) results such as 5.04235E-4 because numerical sort doesn't work with scientific notation. Definitely look at the `--parallel` option on newer version of GNU sort (the bass machines have antique software so that wasn't an option).
+
+In the process I wrote a little utility to reverse geocode a geohash to an address using the Python Geohash library and querying the Nominatim web service (used by OpenStreetMap).
 
 These temperatures are plausible. Similar temperatures can be seen from adjacent geohashes, so they don't seem to be anomalies. 
 
