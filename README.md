@@ -10,7 +10,7 @@ The project specification defines several questions that you will answer with Ma
 
 ## Deliverable I
 
-#### How many records are in the dataset? ([record_count](src/main/java/edu/usfca/cs/mr/record_count/))
+### How many records are in the dataset? ([record_count](src/main/java/edu/usfca/cs/mr/record_count/))
 
 The program outputs: `<records, 323,759,744>`
 
@@ -28,7 +28,7 @@ To put this in context, the population of the United States happens to be very m
 
 The mini dataset contains 525,584 records for 03/14/2015 and 525,584 records for 03/15/2015.
         
-#### Are there any Geohashes that have snow depths greater than zero for the entire year? List them all. ([snow_depth](src/main/java/edu/usfca/cs/mr/snow_depth/))
+### Are there any Geohashes that have snow depths greater than zero for the entire year? List them all. ([snow_depth](src/main/java/edu/usfca/cs/mr/snow_depth/))
 
 To answer this question, I  used feature #51 "snow_depth_surface", eliminated all geohashes that have one or more zero values (I consider zero, any measurement under 0.001", i.e. less than 1 mm).
 
@@ -36,7 +36,7 @@ To answer this question, I  used feature #51 "snow_depth_surface", eliminated al
 | --- | --- | ---: |
 | abcde | Montreal, Quebec | 12.4 |
 
-#### When and where was the hottest temperature observed in the dataset? Is it an anomaly? ([hottest_temperature](src/main/java/edu/usfca/cs/mr/hottest_temperature/))
+### When and where was the hottest temperature observed in the dataset? Is it an anomaly? ([hottest_temperature](src/main/java/edu/usfca/cs/mr/hottest_temperature/))
 
 Here is the top 10 (geohash kept to original length / precision):
 
@@ -53,11 +53,14 @@ Here is the top 10 (geohash kept to original length / precision):
 | 9g7eb0mjs2zb | Veracruz de Ignacio de la Llave, México | 04-27 | 57.5795 |
 | 9g77v81phcu0 | Veracruz de Ignacio de la Llave, México | 04-27 | 57.5795 |
 
+**Yes, it is an anomaly.**
 
-These temperatures seem plausible. Similar temperatures can be seen from adjacent geohashes, so they don't seem to be anomalies. FYI Quintana Roo is the Mexican state in which Cancún is situated, Oaxaca is a Mexican city situated very far away from there, and then there is the very pedantic Veracruz de Ignacio de la Llave, or you know... Veracruz.
+These temperatures seem plausible at first. Similar temperatures can be seen from adjacent geohashes, so they don't seem to be anomalies. FYI Quintana Roo is the Mexican state in which Cancún is situated, Oaxaca is a Mexican city situated very far away from there, and then there is the very pedantic Veracruz de Ignacio de la Llave, or you know... Veracruz.
 We can also see that the same date comes more multiple times. 
 
-For this exercise I had some trouble. I tried to use my own WritableComparable, but wasn't able to run the job due to a lack of memory apparently. Then the reduce part hanged for a long time. And finally there was the issue of sorting the data. For that I downloaded the output files to the disk, and ran:
+However, Weather Underground tells another story for the temperature on August 22, 2015 in Cancun, reporting only a maximum of 33 °C. Furthermore, at the time of writing, the hottest temperature (measured) on Earth has been recorded in Death Valley in 1913 at 56.7 °C (134 °F), so we can trivially conclude that any temperature in the NAM files higher than the record is erroneous. 
+
+**Answering this question was not a sinecure...** I tried to use my own WritableComparable, but wasn't able to run the job due to a lack of memory apparently. Then the reduce part hanged for a long time. And finally there was the issue of sorting the data. For that I downloaded the output files to the disk, and ran:
 
     LC_ALL=C sort -k2 -n -S 80% part* | grep -v 'E-' 
     
@@ -65,9 +68,9 @@ For this exercise I had some trouble. I tried to use my own WritableComparable, 
 
 In the process I wrote a little utility to reverse geocode a geohash to an address using the Python Geohash library and querying the Nominatim web service (used by OpenStreetMap).
 
-#### Where are you most likely to be struck by lightning? Use a precision of 4 Geohash characters and provide the top 3 locations.
+### Where are you most likely to be struck by lightning? Use a precision of 4 Geohash characters and provide the top 3 locations.
 
-#### After graduating from USF, you found a startup that aims to provide personalized travel itineraries using big data analysis. Given your own personal preferences, build a plan for a year of travel across 5 locations. Or, in other words: pick 5 regions. What is the best time of year to visit them based on the dataset?
+### After graduating from USF, you found a startup that aims to provide personalized travel itineraries using big data analysis. Given your own personal preferences, build a plan for a year of travel across 5 locations. Or, in other words: pick 5 regions. What is the best time of year to visit them based on the dataset?
 
 For this year of travel, I would like to visit:
  * Dartmouth, Nova Scotia, in memory of flight SWR-111 that disappeared on September 2, 1998 in the waters of the Atlantic Ocean after an onboard fire,
