@@ -79,10 +79,14 @@ During this year of travel, I would like to visit:
   * Temperature (temperature_surface): 18-27 °C would be ideal ;
   * Snow (snow_cover_surface): < 1 cm because that's easier for hiking and less road closures ;
   * Wind (u-component_of_wind_maximum_wind and v-component_of_wind_maximum_wind): 0-3 on the [Beaufort scale](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.458.268&rep=rep1&type=pdf), i.e. less than 20 kph ;
-  * Humidity (relative_humidity_zerodegc_isotherm): 30-50 %
-  * Rain (categorical_rain_yes1_no0_surface): 0
-  * Freezing rain (categorical_freezing_rain_yes1_no0_surface): 0
-  * Visibility (visibility_surface): > 5000 m
+  * Humidity (relative_humidity_zerodegc_isotherm): 30-50 % ;
+  * Rain (categorical_rain_yes1_no0_surface): 0 ;
+  * Freezing rain (categorical_freezing_rain_yes1_no0_surface): 0 ;
+  * Visibility (visibility_surface): > 5000.
+ 
+To calculate the wind speed from the u and v vectors ("components") of the wind, we apply the formula:
+
+![ws=sqrt(u^2+v^2](https://latex.codecogs.com/gif.latex?\box{ws}&space;=&space;\sqrt{u^2&space;&plus;&space;v^2)
  
 By the way, sometimes it is not very obvious what kind of values we get. Is the percentage given as 20 or 0.20? For this I used the following:
 
