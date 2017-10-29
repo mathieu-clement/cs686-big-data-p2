@@ -23,7 +23,7 @@ We can compare this to the number of records that we see in the statistics at th
         
 (commas added for readability)
 
-To put this in context, the population of the United States happens to be exactly the same: 323.1 million.
+To put this in context, the population of the United States happens to be very much the same: 323.1 million.
 
 
 The mini dataset contains 525,584 records for 03/14/2015 and 525,584 records for 03/15/2015.
@@ -64,6 +64,8 @@ For this exercise I had some trouble. I tried to use my own WritableComparable, 
 `LC_ALL=C` given for reference, will speed up alphanumeric sorts dramatically, avoids UTF-8 type comparisons. `-k2` sorts using the second column (here, the temperature). `-S 80%` permits sort to use 80 % of the system memory. The output is piped to grep to exclude (`-v`) results such as 5.04235E-4 because numerical sort doesn't work with scientific notation. Definitely look at the `--parallel` option on newer version of GNU sort (the bass machines have antique software so that wasn't an option).
 
 In the process I wrote a little utility to reverse geocode a geohash to an address using the Python Geohash library and querying the Nominatim web service (used by OpenStreetMap).
+
+#### Where are you most likely to be struck by lightning? Use a precision of 4 Geohash characters and provide the top 3 locations.
 
 ## Deliverable II
 
