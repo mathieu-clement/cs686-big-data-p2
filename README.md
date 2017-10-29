@@ -82,8 +82,13 @@ During this year of travel, I would like to visit:
   * Humidity (relative_humidity_zerodegc_isotherm): 30-50 %
   * Rain (categorical_rain_yes1_no0_surface): 0
   * Freezing rain (categorical_freezing_rain_yes1_no0_surface): 0
-  * Visibility (visibility_surface): > 1000 m
+  * Visibility (visibility_surface): > 5000 m
  
+By the way, sometimes it is not very obvious what kind of values we get. Is the percentage given as 20 or 0.20? For this I used the following:
+
+    cat nam_mini.tdv | awk '{print $30;}' | sort -n -S 80% | uniq
+    
+This is for field 30, supposing it contains numerical data.
 
 **Implementation:**
 
