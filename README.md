@@ -89,6 +89,11 @@ During this year of travel, I would like to visit:
   * Visibility (visibility_surface): > 1000 m
  
 
+**Implementation:**
+
+  1. The Map function outputs <geohash: timestamp> for every record that matches all the aforementioned criteria.
+  2. The Reduce function filters all those records and only outputs the first of 3 consecutive days of those good conditions.
+
 ## Deliverable II
 
 Responses go here.
