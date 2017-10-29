@@ -40,20 +40,22 @@ To answer this question, I  used feature #51 "snow_depth_surface", eliminated al
 
 Here is the top 10 (geohash kept to original length / precision):
 
-| Geohash | Address | Temperature [°C] |
-| --- | --- | ---: |
-| d5dpds10m55b | Quintana Roo, México | 58.24063 |
-| d5dpds10m55b | Quintana Roo, México | 58.024323 |
-| d5f0jqerq27b | Cancún, Quintana Roo, México | 57.99063 |
-| d5f0jqerq27b | Cancún, Quintana Roo, México | 57.94571 |
-| d5f04xyhucez | Quintana Roo, México | 57.86563 |
-| d5f04xyhucez | Quintana Roo, México | 57.761627 |
-| 9g7322m79vh0 | Oaxaca, México | 57.7045 |
-| d5dpds10m55b | Quintana Roo, México | 57.636627 |
-| 9g7eb0mjs2zb | Veracruz de Ignacio de la Llave, México | 57.5795 |
-| 9g77v81phcu0 | Veracruz de Ignacio de la Llave, México | 57.5795 |
+| Geohash | Address | Month-Day | Temperature [°C] |
+| --- | --- | --- | ---: |
+| **d5dpds10m55b** | **Quintana Roo, México** | **08-22** | **58.24063** |
+| d5dpds10m55b | Quintana Roo, México | 08-23 | 58.024323 |
+| d5f0jqerq27b | Cancún, Quintana Roo, México | 08-22 | 57.99063 |
+| d5f0jqerq27b | Cancún, Quintana Roo, México | 08-27 | 57.94571 |
+| d5f04xyhucez | Quintana Roo, México | 08-22 | 57.86563 |
+| d5f04xyhucez | Quintana Roo, México | 08-08 | 57.761627 |
+| 9g7322m79vh0 | Oaxaca, México | 04-27 | 57.7045 |
+| d5dpds10m55b | Quintana Roo, México | 08-08 | 57.636627 |
+| 9g7eb0mjs2zb | Veracruz de Ignacio de la Llave, México | 04-27 | 57.5795 |
+| 9g77v81phcu0 | Veracruz de Ignacio de la Llave, México | 04-27 | 57.5795 |
 
-These temperatures are plausible. Similar temperatures can be seen from adjacent geohashes, so they don't seem to be anomalies. FYI Quintana Roo is the Mexican state in which Cancún is situated, Oaxaca is a Mexican city situated very far away from there, and then there is the very pedantic Veracruz de Ignacio de la Llave, or you know... Veracruz.
+
+These temperatures seem plausible. Similar temperatures can be seen from adjacent geohashes, so they don't seem to be anomalies. FYI Quintana Roo is the Mexican state in which Cancún is situated, Oaxaca is a Mexican city situated very far away from there, and then there is the very pedantic Veracruz de Ignacio de la Llave, or you know... Veracruz.
+We can also see that the same date comes more multiple times. 
 
 For this exercise I had some trouble. I tried to use my own WritableComparable, but wasn't able to run the job due to a lack of memory apparently. Then the reduce part hanged for a long time. And finally there was the issue of sorting the data. For that I downloaded the output files to the disk, and ran:
 
