@@ -28,9 +28,15 @@ The mini dataset contains 525,584 records for 03/14/2015 and 525,584 records for
 
 To answer this question, I  used feature #51 "snow_depth_surface", eliminated all geohashes that have one or more zero values (I consider zero, any measurement under 0.001", i.e. less than 1 mm).
 
+Here's the top 3:
+
 |Geohash|Address|Average snow depth [m]|
 | --- | --- | ---: |
-| abcde | Montreal, Quebec | 12.4 |
+| fdd4 | Torngat Mountains National Park, QC, Canada | 0.999483 |
+| fdd7 | Torngat Mountains National Park, QC, Canada | 0.8913001 |
+| f9qp | Newfoundland and Labrador, Canada | 0.8557326 |
+
+TODO Redo job without 4 character constraint, as this yield too many results to answer the question.
 
 ### When and where was the hottest temperature observed in the dataset? Is it an anomaly? ([hottest_temperature](src/main/java/edu/usfca/cs/mr/hottest_temperature/))
 
@@ -64,9 +70,9 @@ However, Weather Underground tells another story for the temperature on August 2
 
 In the process I wrote a little utility to reverse geocode a geohash to an address using the Python Geohash library and querying the Nominatim web service (used by OpenStreetMap).
 
-### Where are you most likely to be struck by lightning? Use a precision of 4 Geohash characters and provide the top 3 locations.
+### Where are you most likely to be struck by lightning? Use a precision of 4 Geohash characters and provide the top 3 locations. ([lightning](src/main/java/edu/usfca/cs/mr/lightning/))
 
-### After graduating from USF, you found a startup that aims to provide personalized travel itineraries using big data analysis. Given your own personal preferences, build a plan for a year of travel across 5 locations. Or, in other words: pick 5 regions. What is the best time of year to visit them based on the dataset?
+### After graduating from USF, you found a startup that aims to provide personalized travel itineraries using big data analysis. Given your own personal preferences, build a plan for a year of travel across 5 locations. Or, in other words: pick 5 regions. What is the best time of year to visit them based on the dataset? ([travel_year](src/main/java/edu/usfca/cs/mr/travel_year/))
 
 During this year of travel, I would like to visit:
  * dxfy: Halifax, Nova Scotia, in memory of flight SWR-111 that disappeared on September 2, 1998 in the waters of the Atlantic Ocean after an onboard fire,
