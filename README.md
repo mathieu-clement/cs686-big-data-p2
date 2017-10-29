@@ -73,12 +73,21 @@ In the process I wrote a little utility to reverse geocode a geohash to an addre
 ### After graduating from USF, you found a startup that aims to provide personalized travel itineraries using big data analysis. Given your own personal preferences, build a plan for a year of travel across 5 locations. Or, in other words: pick 5 regions. What is the best time of year to visit them based on the dataset?
 
 For this year of travel, I would like to visit:
- * Dartmouth, Nova Scotia, in memory of flight SWR-111 that disappeared on September 2, 1998 in the waters of the Atlantic Ocean after an onboard fire,
- * The Bahamas (near Miami, FL) to cheer up,
- * Niagara Falls (between Toronto and Rochester, NY) because it's romantic,
- * Albuquerque, to see the sites where they filmed Breaking Bad,
- * Rocky Mountain National Park, Colorado, no justification needed.
-    
+ * dxf: Dartmouth, Nova Scotia, in memory of flight SWR-111 that disappeared on September 2, 1998 in the waters of the Atlantic Ocean after an onboard fire,
+ * dk2: The Bahamas (near Miami, FL) to cheer up,
+ * dpxy: Niagara Falls (between Toronto and Rochester, NY) because it's romantic,
+ * 9whp: Albuquerque, to see the sites where they filmed Breaking Bad,
+ * 9xhv: Rocky Mountain National Park, Colorado, no justification needed.
+ 
+ I will choose the following features to determine when is a good time to visit:
+  * Temperature (temperature_surface): 18-27 °C would be ideal ;
+  * Snow (snow_cover_surface): < 1 cm because that's easier for hiking and less road closures ;
+  * Wind (u-component_of_wind_maximum_wind and v-component_of_wind_maximum_wind): 0-3 on the [Beaufort scale](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.458.268&rep=rep1&type=pdf), i.e. less than 20 kph ;
+  * Humidity (relative_humidity_zerodegc_isotherm): 30-50 %
+  * Rain (categorical_rain_yes1_no0_surface): 0
+  * Freezing rain (categorical_freezing_rain_yes1_no0_surface): 0
+  * Visibility (visibility_surface): > 1000 m
+ 
 
 ## Deliverable II
 
