@@ -24,10 +24,10 @@ public class HumidityBayAreaMapper extends Mapper<LongWritable, Text, IntWritabl
         Object[] features = Observation.getFeatures(value.toString(),
                 new int[]{1, 2, 13},
                 new Class<?>[]{String.class, String.class, Float.class});
-        String geohash = (String) features[0];
+        String geohash = (String) features[1];
 
         if (BAY_AREA_PREFIXES.contains(geohash.substring(0, 4))) {
-            int month = new Date(Long.parseLong((String) features[1])).getMonth() + 1;
+            int month = new Date(Long.parseLong((String) features[0])).getMonth() + 1;
             float humidity = (float) features[2];
             context.write(new IntWritable(month), new FloatWritable(humidity));
         }

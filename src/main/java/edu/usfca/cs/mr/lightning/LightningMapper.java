@@ -12,7 +12,7 @@ public class LightningMapper extends Mapper<LongWritable, Text, Text, IntWritabl
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         Object[] features = Observation.getFeatures(value.toString(),
-                new int[]{1, 23},
+                new int[]{2, 23},
                 new Class<?>[]{String.class, Boolean.class});
         String geohash = (String) features[0];
         boolean lightning = (boolean) features[1];

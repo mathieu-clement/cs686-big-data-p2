@@ -15,13 +15,13 @@ public class SnowDepthMapper extends Mapper<LongWritable, Text, Text, FloatWrita
 
     @Override
     protected void map(LongWritable key, Text value, Context context)
-        throws IOException, InterruptedException {
+            throws IOException, InterruptedException {
 
         Object[] features = Observation.getFeatures(
                 value.toString(),
                 new int[]{2, 51},
                 new Class<?>[]{String.class, Float.class});
-        String geohash = ((String) features[0]).substring(0, 4);
+        String geohash = ((String) features[0]);
         float snowDepth = (float) features[1]; // in meters
 
         context.write(new Text(geohash), new FloatWritable(snowDepth));

@@ -33,19 +33,18 @@ public class TravelYearMapper extends Mapper<LongWritable, Text, Text, Text> {
 
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-        String valueStr = value.toString();
-        if (!PREFIXES.contains(valueStr.substring(0,4))) return; // Filter out irrelevant locations
-
         Object[] features = Observation.getFeatures(
-                valueStr,
+                value.toString(),
                 new int[]{1, 2, 8, 10, 13,
                         30, 38, 41, 42, 54},
                 new Class<?>[]{String.class, String.class, Integer.class, Boolean.class, Integer.class,
                 Boolean.class, Double.class, Float.class, Float.class, Double.class}
         );
 
-        String geohash = (String) features[0];
-        String monthDay = DATE_FORMAT.format(new Date(Long.parseLong((String) features[1])));
+        String geohash = (String) features[1];
+        if (!PREFIXES.contains(geohash.substring(0, 4))) return; // Filter out irrelevant locations
+
+        String monthDay = DATE_FORMAT.format(new Date(Long.parseLong((String) features[0])));
         int visibility = (int) features[2];
         boolean rain = (boolean) features[3];
         int humidity = (int) features[4];
