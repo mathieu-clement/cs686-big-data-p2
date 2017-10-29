@@ -42,16 +42,18 @@ Here is the top 10 (geohash kept to original length / precision):
 
 | Geohash | Address | Temperature [°C] |
 | --- | --- | ---: |
-| 9g77v81phcu0 | Veracruz de Ignacio de la Llave, México | 57.5795 |
-| 9g7eb0mjs2zb | Veracruz de Ignacio de la Llave, México | 57.5795 |
-| d5dpds10m55b | Quintana Roo, México | 57.636627 |
-| 9g7322m79vh0 | Oaxaca, México | 57.7045 |
-| d5f04xyhucez | Quintana Roo, México | 57.761627 |
-| d5f04xyhucez | Quintana Roo, México | 57.86563 |
-| d5f0jqerq27b | Cancún, Quintana Roo, México | 57.94571 |
-| d5f0jqerq27b | Cancún, Quintana Roo, México | 57.99063 |
-| d5dpds10m55b | Quintana Roo, México | 58.024323 |
 | d5dpds10m55b | Quintana Roo, México | 58.24063 |
+| d5dpds10m55b | Quintana Roo, México | 58.024323 |
+| d5f0jqerq27b | Cancún, Quintana Roo, México | 57.99063 |
+| d5f0jqerq27b | Cancún, Quintana Roo, México | 57.94571 |
+| d5f04xyhucez | Quintana Roo, México | 57.86563 |
+| d5f04xyhucez | Quintana Roo, México | 57.761627 |
+| 9g7322m79vh0 | Oaxaca, México | 57.7045 |
+| d5dpds10m55b | Quintana Roo, México | 57.636627 |
+| 9g7eb0mjs2zb | Veracruz de Ignacio de la Llave, México | 57.5795 |
+| 9g77v81phcu0 | Veracruz de Ignacio de la Llave, México | 57.5795 |
+
+These temperatures are plausible. Similar temperatures can be seen from adjacent geohashes, so they don't seem to be anomalies. FYI Quintana Roo is the Mexican state in which Cancún is situated, Oaxaca is a Mexican city situated very far away from there, and then there is the very pedantic Veracruz de Ignacio de la Llave, or you know... Veracruz.
 
 For this exercise I had some trouble. I tried to use my own WritableComparable, but wasn't able to run the job due to a lack of memory apparently. Then the reduce part hanged for a long time. And finally there was the issue of sorting the data. For that I downloaded the output files to the disk, and ran:
 
@@ -60,8 +62,6 @@ For this exercise I had some trouble. I tried to use my own WritableComparable, 
 `LC_ALL=C` given for reference, will speed up alphanumeric sorts dramatically, avoids UTF-8 type comparisons. `-k2` sorts using the second column (here, the temperature). `-S 80%` permits sort to use 80 % of the system memory. The output is piped to grep to exclude (`-v`) results such as 5.04235E-4 because numerical sort doesn't work with scientific notation. Definitely look at the `--parallel` option on newer version of GNU sort (the bass machines have antique software so that wasn't an option).
 
 In the process I wrote a little utility to reverse geocode a geohash to an address using the Python Geohash library and querying the Nominatim web service (used by OpenStreetMap).
-
-These temperatures are plausible. Similar temperatures can be seen from adjacent geohashes, so they don't seem to be anomalies. 
 
 ## Deliverable II
 
