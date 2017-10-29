@@ -69,8 +69,8 @@ In the process I wrote a little utility to reverse geocode a geohash to an addre
 ### After graduating from USF, you found a startup that aims to provide personalized travel itineraries using big data analysis. Given your own personal preferences, build a plan for a year of travel across 5 locations. Or, in other words: pick 5 regions. What is the best time of year to visit them based on the dataset?
 
 During this year of travel, I would like to visit:
- * dxf: Dartmouth, Nova Scotia, in memory of flight SWR-111 that disappeared on September 2, 1998 in the waters of the Atlantic Ocean after an onboard fire,
- * dk2: The Bahamas (near Miami, FL) to cheer up,
+ * dxfy: Halifax, Nova Scotia, in memory of flight SWR-111 that disappeared on September 2, 1998 in the waters of the Atlantic Ocean after an onboard fire,
+ * dk2y: Nassau, Bahamas (near Miami, FL) to cheer up,
  * dpxy: Niagara Falls (between Toronto and Rochester, NY) because it's romantic,
  * 9whp: Albuquerque, to see the sites where they filmed Breaking Bad,
  * 9xhv: Rocky Mountain National Park, Colorado, no justification needed.
