@@ -102,21 +102,6 @@ On average, during the month of March 2015, the humidity was 22 %, making it the
 
 ![Humidity in the Bay Area](/images/humidity_bay_area.svg)
 
-| Month | Humidity |
-| --- | ---: |
-| 1 | 29 |
-| 2 | 27 |
-| 3 | 22 |
-| 4 | 33 |
-| 5 | 28 |
-| 6 | 24 |
-| 7 | 34 |
-| 8 | 23 |
-| 9 | 30 |
-| 10 | 31 |
-| 11 | 36 |
-| 12 | 45 |
-
 
 ### After graduating from USF, you found a startup that aims to provide personalized travel itineraries using big data analysis. Given your own personal preferences, build a plan for a year of travel across 5 locations. Or, in other words: pick 5 regions. What is the best time of year to visit them based on the dataset? ([travel_year](src/main/java/edu/usfca/cs/mr/travel_year/))
 
