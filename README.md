@@ -98,6 +98,8 @@ Keep in mind: 4 character geohash defines a zone with a [precision](https://gis.
 
 ### What is the driest month in the bay area? This should include a histogram with data from each month. ([humidity_bay_area](src/main/java/edu/usfca/cs/mr/humidity_bay_area/))
 
+On average, during the month of March 2015, the humidity was 22 %, making it the driest month of the year.
+
 ![Humidity in the Bay Area](/images/humidity_bay_area.svg)
 
 | Month | Humidity |
