@@ -73,6 +73,8 @@ In the process I wrote a little utility to reverse geocode a geohash to an addre
 
 ### What is the driest month in the bay area? This should include a histogram with data from each month. ([humidity_bay_area](src/main/java/edu/usfca/cs/mr/humidity_bay_area/))
 
+![Humidity in the Bay Area](/images/humidity_bay_area.svg)
+
 | Month | Humidity |
 | --- | ---: |
 | 1 | 29 |
