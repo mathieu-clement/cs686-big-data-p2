@@ -73,11 +73,15 @@ In the process I wrote a little utility to reverse geocode a geohash to an addre
 
 To solve this question, I looked at the feature "lightning_surface". Whenever the value is positive, the mapper output is <geohash[4:], 1>. The reducer then calculates the sum just like word count, and that tells us how many observations of lightning we have found for each 4 character geohash.
 
-We have a tie, so this list has more than 3 locations:
+We have a tie, so this list has more than 3 locations.
+
+![Lightning map](/images/lightning_map.png) 
+
+https://drive.google.com/open?id=1R22MWqeK0pteabunmvPfcmzw_tU&usp=sharing
 
 |Geohash|Address (center)|Lightning occurrences|
 | --- | --- | ---: |
-| dkcm | Atlantic Ocean, 200 km south of St. John and 500 km east of Nova Scotia | 33 |
+| dkcm | Atlantic Ocean, Bahamas | 33 |
 | d54s | Atlantic Ocean, 200 km east of Belize | 33 |
 | d54q | Atlantic Ocean, 150 km east of Belize | 33 |
 | 9g3m | Mexico City | 33 |
