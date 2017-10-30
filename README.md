@@ -146,7 +146,7 @@ This is for field 30, supposing it contains numerical data.
 
 **Implementation:**
 
-  1. The Map function outputs <geohash: month-day> for every record that matches all the aforementioned criteria.
+  1. The Map function outputs <geohash: dayInYear> for every record that matches all the aforementioned criteria.
   2. The Reduce function filters all those records and only outputs the first of 3 consecutive days of those good conditions.
 
 ## Deliverable II
