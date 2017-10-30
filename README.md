@@ -71,6 +71,27 @@ In the process I wrote a little utility to reverse geocode a geohash to an addre
 
 ### Where are you most likely to be struck by lightning? Use a precision of 4 Geohash characters and provide the top 3 locations. ([lightning](src/main/java/edu/usfca/cs/mr/lightning/))
 
+To solve this question, I looked at the feature "lightning_surface". Whenever the value was positive, the mapper output is <geohash[4:], 1>. The reducer then calculates the sum just like word count, and that tells us how many observations of lightning we have found for each 4 character geohash.
+
+We have a tiew, so this list has more than 3 locations:
+
+|Geohash|Address (center)|Lightning occurrences|
+| --- | --- | ---: |
+| dkcm | Atlantic Ocean, 200 km south of St. John and 500 km east of Nova Scotia | 33 |
+| d54s | Atlantic Ocean, 200 km east of Belize | 33 |
+| d54q | Atlantic Ocean, 150 km east of Belize | 33 |
+| 9g3m | Mexico City | 33 |
+| 9en4  | Pacific Ocean, 100 km from the coast of Colola, Michoacán, Mexico | 33 |
+| 9ekt | Pacific Ocean, close to previous point | 33 |
+| 9ehw | Pacific Ocean, close to previous point | 33 |
+| 9eeu | Pacific Ocean, west of Guadalajara, Mexico | 33 |
+| 9685 | Pacific Ocean, very far from the coast | 33 |
+| d5k2 | Atlantic Ocean, west of Cayman Islands | 23 |
+| dt3n | BERMUDA TRIANGLE!!! :ghost: | 22 |
+| dprg | Allegheny National Forest, close to Pennsylvania Route 666 :japanese_goblin: | 22 |
+
+Keep in mind: 4 character geohash defines a zone with a [precision](https://gis.stackexchange.com/a/115501) of +/- 20 km.
+
 ### What is the driest month in the bay area? This should include a histogram with data from each month. ([humidity_bay_area](src/main/java/edu/usfca/cs/mr/humidity_bay_area/))
 
 ![Humidity in the Bay Area](/images/humidity_bay_area.svg)
