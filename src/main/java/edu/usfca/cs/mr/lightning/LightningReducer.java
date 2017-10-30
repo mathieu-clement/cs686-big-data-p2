@@ -17,7 +17,9 @@ public class LightningReducer
         for (IntWritable val : values) {
             count += val.get();
         }
-        context.write(key, new IntWritable(count));
+        if (count > 10) { // speed up
+            context.write(key, new IntWritable(count));
+        }
     }
 
 }
