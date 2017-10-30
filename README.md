@@ -71,9 +71,9 @@ In the process I wrote a little utility to reverse geocode a geohash to an addre
 
 ### Where are you most likely to be struck by lightning? Use a precision of 4 Geohash characters and provide the top 3 locations. ([lightning](src/main/java/edu/usfca/cs/mr/lightning/))
 
-To solve this question, I looked at the feature "lightning_surface". Whenever the value was positive, the mapper output is <geohash[4:], 1>. The reducer then calculates the sum just like word count, and that tells us how many observations of lightning we have found for each 4 character geohash.
+To solve this question, I looked at the feature "lightning_surface". Whenever the value is positive, the mapper output is <geohash[4:], 1>. The reducer then calculates the sum just like word count, and that tells us how many observations of lightning we have found for each 4 character geohash.
 
-We have a tiew, so this list has more than 3 locations:
+We have a tie, so this list has more than 3 locations:
 
 |Geohash|Address (center)|Lightning occurrences|
 | --- | --- | ---: |
