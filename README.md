@@ -32,11 +32,10 @@ Here's the top 3:
 
 |Geohash|Address|Average snow depth [m]|
 | --- | --- | ---: |
-| fdd4 | Torngat Mountains National Park, QC, Canada | 0.999483 |
-| fdd7 | Torngat Mountains National Park, QC, Canada | 0.8913001 |
-| f9qp | Newfoundland and Labrador, Canada | 0.8557326 |
+| f2w7rv7q5hup | near Lac Fontaine, QC, Canada | 7.5816345 |
+| c41v48pupf00 | near Devil's Thumb, Alaska / Canada | 2.0594404 |
+| c41vtks3952p | a few miles from #2 | 1.7886817 |
 
-TODO Redo job without 4 character constraint, as this yield too many results to answer the question.
 
 ### When and where was the hottest temperature observed in the dataset? Is it an anomaly? ([hottest_temperature](src/main/java/edu/usfca/cs/mr/hottest_temperature/))
 
