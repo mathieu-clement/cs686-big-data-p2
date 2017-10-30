@@ -29,7 +29,7 @@ public class TravelYearMapper extends Mapper<LongWritable, Text, Text, Text> {
         }
     }
 
-    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MM-dd");
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("D");
 
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
@@ -44,7 +44,7 @@ public class TravelYearMapper extends Mapper<LongWritable, Text, Text, Text> {
         String geohash = (String) features[1];
         if (!PREFIXES.contains(geohash.substring(0, 4))) return; // Filter out irrelevant locations
 
-        String monthDay = DATE_FORMAT.format(new Date(Long.parseLong((String) features[0])));
+        String dayInYear = DATE_FORMAT.format(new Date(Long.parseLong((String) features[0])));
         int visibility = (int) features[2];
         boolean rain = (boolean) features[3];
         int humidity = (int) features[4];
@@ -62,7 +62,7 @@ public class TravelYearMapper extends Mapper<LongWritable, Text, Text, Text> {
                 !rain &&
                 !freezingRain &&
                 visibility >= 5000 /* m */) {
-            context.write(new Text(geohash.substring(0, 4)), new Text(monthDay));
+            context.write(new Text(geohash.substring(0, 4)), new Text(dayInYear));
         }
     }
 }

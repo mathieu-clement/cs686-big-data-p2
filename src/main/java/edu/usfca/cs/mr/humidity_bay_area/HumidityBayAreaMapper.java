@@ -20,7 +20,7 @@ public class HumidityBayAreaMapper extends Mapper<LongWritable, Text, IntWritabl
             "9q9h", "9q9j", "9q9k", "9q9m", "9q9n", "9q9p"
     );
 
-    private static final Calendar CALENDAR = Calendar.getInstance();
+    private final Calendar CALENDAR = Calendar.getInstance();
 
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
