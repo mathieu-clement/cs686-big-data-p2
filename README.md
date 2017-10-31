@@ -138,14 +138,20 @@ This is for field 30, supposing it contains numerical data.
   
 ### Your travel startup is so successful that you move on to green energy; here, you want to help power companies plan out the locations of solar and wind farms across North America. Write a MapReduce job that locates the top 3 places for solar and wind farms, as well as a combination of both (solar + wind farm). You will report a total of 9 Geohashes as well as their relevant attributes (for example, cloud cover and wind speeds).
 
-Criteria for choosing the location of a wind farm:
+Criteria for choosing the location of wind farms:
   - wind speed (duh!) : see u and v component of wind and formula for wind speed above
   - away from surrounding (tall) obstacles: we don't really have this data here, so we'll ignore it
   - not in a region prone to icing (while ice-throwing turbines are supposedly not a danger according to the Internet, they will shut down when it's freezing, and thus not generating any electricity). For this, every day the temperature is below 0 °C will penalize a potential site
   - not too far from civilization: also going to be ignored
-  - not over water: while offshore installations certainly exist, we'll simplify the problem and assume this is unrealistic no matter how close to the coast.
+  - not over water: while offshore installations certainly exist , we'll simplify the problem and assume this is unrealistic no matter how close to the coast. Note 
 
-
+Criteria for choosing the location of solar farms:
+  - mostly the same as for wind farms
+  - ~~wind speed~~
+  - cloud cover
+  - closer to the equator is better, simply because the sun is up longer, and that's also where you need the most air conditioning, which works on electricity
+  - no snow! (you can heat the panels... but why waste energy on that if you can avoid it)
+  - south oriented is better, but... we don't have this data.
 
 ## Deliverable II
 
