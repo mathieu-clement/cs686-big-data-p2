@@ -107,19 +107,19 @@ On average, during the month of March 2015, the humidity was 22 %, making it the
 
 During this year of travel, I would like to visit:
  * dxfy: Halifax, Nova Scotia, in memory of flight SWR-111 that disappeared on September 2, 1998 in the waters of the Atlantic Ocean after an onboard fire,
- * dk2y: Nassau, Bahamas (near Miami, FL) to cheer up,
+ * dk2y: Nassau, Bahamas (near Miami, FL) to cheer up and enjoy some warmth while the continental US shivers,
  * dpxy: Niagara Falls (between Toronto and Rochester, NY) because it's romantic,
  * 9whp: Albuquerque, to see the sites where they filmed Breaking Bad,
  * 9xhv: Rocky Mountain National Park, Colorado, no justification needed.
  
  I will choose the following features to determine when is a good time to visit:
   * Temperature (temperature_surface): 18-27 °C would be ideal ;
-  * Snow (snow_cover_surface): < 1 cm because that's easier for hiking and less road closures ;
-  * Wind (u-component_of_wind_maximum_wind and v-component_of_wind_maximum_wind): 0-3 on the [Beaufort scale](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.458.268&rep=rep1&type=pdf), i.e. less than 20 kph ;
+  * Snow (snow_cover_surface): < 3 cm because that's easier for hiking and less road closures ;
+  * Wind (u-component_of_wind_maximum_wind and v-component_of_wind_maximum_wind): 0-3 on the [Beaufort scale](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.458.268&rep=rep1&type=pdf), i.e. less than 20 kph -> finally decided to relax this criterion ;
   * Humidity (relative_humidity_zerodegc_isotherm): 30-50 % ;
   * Rain (categorical_rain_yes1_no0_surface): 0 ;
   * Freezing rain (categorical_freezing_rain_yes1_no0_surface): 0 ;
-  * Visibility (visibility_surface): > 5000.
+  * Visibility (visibility_surface): > 3000.
  
 To calculate the [wind speed](http://colaweb.gmu.edu/dev/clim301/lectures/wind/wind-uv.html) from the u and v vectors ("components") of the wind, we apply the formula:
 
@@ -134,7 +134,17 @@ This is for field 30, supposing it contains numerical data.
 **Implementation:**
 
   1. The Map function outputs <geohash: dayInYear> for every record that matches all the aforementioned criteria.
-  2. The Reduce function filters all those records and only outputs the first of 3 consecutive days of those good conditions.
+  2. The Reduce function filters all those records and outputs consecutive days when those good conditions are present.
+  
+| Destination | Dates | Comments |
+| --- | --- | --- |
+| Albuquerque | Last week of march, mid-May | Get there before it gets too hot.
+| Nova Scotia | June - July - August | Only the summer months are bearable.
+| Niagara Falls | Last week of August | Bring your umbrella.
+| Rocky Mountain NP | Early September | "The Rockies have mild summers, cold winters and a lot of precipitation."
+| Bahamas | Early November, mid-December, early January | Send selfies to your less fortunate friends.
+
+[View the actual results](https://pastebin.com/ZE7JZskD)
   
 ### Your travel startup is so successful that you move on to green energy; here, you want to help power companies plan out the locations of solar and wind farms across North America. Write a MapReduce job that locates the top 3 places for solar and wind farms, as well as a combination of both (solar + wind farm). You will report a total of 9 Geohashes as well as their relevant attributes (for example, cloud cover and wind speeds).
 
