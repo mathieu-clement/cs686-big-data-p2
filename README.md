@@ -145,6 +145,8 @@ This is for field 30, supposing it contains numerical data.
 | Bahamas | Early November, mid-December, early January | Send selfies to your less fortunate friends.
 
 [View the actual results](https://pastebin.com/ZE7JZskD)
+
+![Travel year](/images/travel_year.png)
   
 ### Your travel startup is so successful that you move on to green energy; here, you want to help power companies plan out the locations of solar and wind farms across North America. Write a MapReduce job that locates the top 3 places for solar and wind farms, as well as a combination of both (solar + wind farm). You will report a total of 9 Geohashes as well as their relevant attributes (for example, cloud cover and wind speeds).
 
