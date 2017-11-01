@@ -134,7 +134,7 @@ This is for field 30, supposing it contains numerical data.
 **Implementation:**
 
   1. The Map function outputs <geohash: dayInYear> for every record that matches all the aforementioned criteria.
-  2. The Reduce function filters all those records and outputs consecutive days when those good conditions are present.
+  2. The Reduce function is basically an identity function.
   
 | Destination | Dates | Comments |
 | --- | --- | --- |
