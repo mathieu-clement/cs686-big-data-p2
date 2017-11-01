@@ -15,7 +15,7 @@ public class LightningMapper extends Mapper<LongWritable, Text, Text, IntWritabl
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         Observation observation = new Observation(value.toString(), GEOHASH, LIGHTNING_SURFACE);
-        String geohash = observation.getGeohash()
+        String geohash = observation.getGeohash();
         boolean lightning = observation.getFeature(LIGHTNING_SURFACE, Boolean.class);
 
         if (lightning) {

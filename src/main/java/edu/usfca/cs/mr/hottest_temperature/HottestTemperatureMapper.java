@@ -23,7 +23,7 @@ public class HottestTemperatureMapper extends Mapper<LongWritable, Text, Text, F
         Date date = new Date(Long.parseLong(timestamp));
         String dateStr = DATE_FORMAT.format(date);
 
-        String geohash = observation.getGeohash()
+        String geohash = observation.getGeohash();
 
         float temperature = observation.getFeature(TEMPERATURE_SURFACE, Float.class); // Kelvin
         temperature = temperature - 273.15f; // degrees Celsius

@@ -27,7 +27,7 @@ public class HumidityBayAreaMapper extends Mapper<LongWritable, Text, IntWritabl
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         Observation observation = new Observation(value.toString(), TIMESTAMP, GEOHASH, RELATIVE_HUMIDITY_ZERODEGC_ISOTHERM);
-        String geohash = observation.getGeohash()
+        String geohash = observation.getGeohash();
 
         if (BAY_AREA_PREFIXES.contains(geohash.substring(0, 4))) {
             Date date = new Date(Long.parseLong(observation.getFeature(TIMESTAMP, String.class)));
