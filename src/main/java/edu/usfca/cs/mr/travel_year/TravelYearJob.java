@@ -38,6 +38,7 @@ public class TravelYearJob {
             // types. It is set separately for elaboration.
             job.setOutputKeyClass(Text.class);
             job.setOutputValueClass(Text.class);
+            //LazyOutputFormat.setOutputFormatClass(job, TextOutputFormat.class);
             // path to input in HDFS
             FileInputFormat.addInputPaths(job, args[0]);
             // path to output in HDFS

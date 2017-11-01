@@ -20,8 +20,12 @@ public class Observation {
         while (itr.hasMoreTokens()) {
             String value = itr.nextToken();
             if (i == indices[j]) {
-                result[j] = toObject(value, deserializationClasses[j]);
-                j++;
+                try {
+                    result[j] = toObject(value, deserializationClasses[j]);
+                    j++;
+                } catch (NumberFormatException nfe) {
+                    throw new RuntimeException("Couldn't parse '" + value + "' as " + deserializationClasses[j].getSimpleName() + " from column #" + i, nfe);
+                }
             }
             if (j == indices.length) {
                 break;

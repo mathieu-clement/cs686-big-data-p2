@@ -20,6 +20,7 @@ public class TravelYearMapper extends Mapper<LongWritable, Text, Text, Text> {
             "9whp", // Albuquerque
             "9xhv" // Rocky Mountain
     );
+
     static {
         for (String prefix : PREFIXES) {
             if (prefix.length() != 4) {
@@ -36,18 +37,19 @@ public class TravelYearMapper extends Mapper<LongWritable, Text, Text, Text> {
         Object[] features = Observation.getFeatures(
                 value.toString(),
                 new int[]{1, 2, 8, 10, 13,
-                        30, 38, 41, 42, 54},
-                new Class<?>[]{String.class, String.class, Integer.class, Boolean.class, Integer.class,
-                Boolean.class, Double.class, Float.class, Float.class, Double.class}
+                        30, 38, 41, 51, 54},
+                new Class<?>[]{String.class, String.class, Float.class, Boolean.class, Float.class,
+                        Boolean.class, Double.class, Float.class, Float.class, Double.class}
         );
 
         String geohash = (String) features[1];
-        if (!PREFIXES.contains(geohash.substring(0, 4))) return; // Filter out irrelevant locations
+        String geohashPrefix = geohash.substring(0, 4);
+        if (!PREFIXES.contains(geohashPrefix)) return; // Filter out irrelevant locations
 
         String dayInYear = DATE_FORMAT.format(new Date(Long.parseLong((String) features[0])));
-        int visibility = (int) features[2];
+        int visibility = (int) (float) features[2];
         boolean rain = (boolean) features[3];
-        int humidity = (int) features[4];
+        int humidity = (int) (float) features[4];
         boolean freezingRain = (boolean) features[5];
         double vWind = (double) features[6];
         float temperature = (float) features[7];
@@ -55,14 +57,20 @@ public class TravelYearMapper extends Mapper<LongWritable, Text, Text, Text> {
         double uWind = (double) features[9];
         double windSpeed = Math.sqrt(uWind * uWind + vWind * vWind); // http://colaweb.gmu.edu/dev/clim301/lectures/wind/wind-uv.html
 
-        if (temperature >= 18 && temperature < 28 /* deg C */ &&
-                snowCover < 0.01 /* m */ &&
-                windSpeed < 5.555 /* m/s */ &&
-                humidity >= 30 && humidity < 50 &&
-                !rain &&
-                !freezingRain &&
-                visibility >= 5000 /* m */) {
-            context.write(new Text(geohash.substring(0, 4)), new Text(dayInYear));
+        if (
+                temperature >= toKelvin(18) && temperature < toKelvin(28)
+                        && snowCover < 0.01 /* m */
+//                        && windSpeed < 5.555 /* m/s */
+                        && humidity >= 30 && humidity < 50
+                        && !rain
+                        && !freezingRain
+                        && visibility >= 3000 /* m */
+                ) {
+            context.write(new Text(geohashPrefix), new Text(dayInYear));
         }
+    }
+
+    private float toKelvin(float celsius) {
+        return celsius + 273.15f;
     }
 }

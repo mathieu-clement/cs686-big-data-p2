@@ -22,12 +22,14 @@ public class TravelYearReducer extends Reducer<Text, Text, Text, Text> {
         }
 
         for (Integer day : days) {
-            if (days.contains(day + 1) && days.contains(day + 2)) {
+            if (days.contains(day + 1)
+                // && days.contains(day + 2)
+                    ) {
                 try {
                     String monthDay = toMonthDay(day);
                     context.write(geohash, new Text(monthDay));
                 } catch (ParseException e) {
-                    e.printStackTrace();
+                    throw new RuntimeException(e);
                 }
             }
         }
