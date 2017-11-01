@@ -138,7 +138,7 @@ This is for field 30, supposing it contains numerical data.
   
 | Destination | Dates | Comments |
 | --- | --- | --- |
-| Albuquerque | Last week of march, mid-May | Get there before it gets too hot.
+| Albuquerque | Last week of March, mid-May | Get there before it gets too hot.
 | Nova Scotia | June - July - August | Only the summer months are bearable.
 | Niagara Falls | Last week of August | Bring your umbrella.
 | Rocky Mountain NP | Early September | "The Rockies have mild summers, cold winters and a lot of precipitation."
