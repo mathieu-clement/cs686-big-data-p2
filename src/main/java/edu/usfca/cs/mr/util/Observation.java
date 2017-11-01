@@ -1,8 +1,6 @@
 package edu.usfca.cs.mr.util;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Observation {
 
@@ -10,32 +8,38 @@ public class Observation {
     private List<Integer> indices;
 
     public Observation(String tdv, Feature... features) {
-        Integer[] ints = toIntegers(features);
-        this.features = parseFeatures(tdv, ints);
-        this.indices = Arrays.asList(ints);
+        this.indices = toIndices(features);
+        this.features = parseFeatures(tdv, indices);
     }
 
-    private Integer[] toIntegers(Feature[] features) {
-        Integer[] ints = new Integer[features.length];
-        for (int i = 0; i < features.length; i++) {
-            ints[i] = features[i].getIndex();
+    private static List<Integer> copyAndSort(List<Integer> unsorted) {
+        List<Integer> sortedIndices = new ArrayList<>(unsorted);
+        Collections.sort(sortedIndices);
+        return sortedIndices;
+    }
+
+    private List<Integer> toIndices(Feature[] features) {
+        List<Integer> result = new ArrayList<>(features.length);
+        for (Feature feature : features) {
+            result.add(feature.getIndex());
         }
-        return ints;
+        return result;
     }
 
-    private static String[] parseFeatures(String tdv, Integer[] indices) {
-        String[] result = new String[indices.length];
+    private static String[] parseFeatures(String tdv, List<Integer> indices) {
+        indices = copyAndSort(indices);
+        String[] result = new String[indices.size()];
 
         StringTokenizer itr = new StringTokenizer(tdv);
         int i = 1;
         int j = 0;
         while (itr.hasMoreTokens()) {
             String value = itr.nextToken();
-            if (i == indices[j]) {
+            if (i == indices.get(i) /* atIndex() */) {
                 result[j] = value;
                 j++;
             }
-            if (j == indices.length) {
+            if (j == indices.size()) {
                 break;
             }
             i++;
