@@ -35,7 +35,7 @@ public class Observation {
         int j = 0;
         while (itr.hasMoreTokens()) {
             String value = itr.nextToken();
-            if (i == indices.get(i) /* atIndex() */) {
+            if (i == indices.get(j) /* atIndex() */) {
                 result[j] = value;
                 j++;
             }
