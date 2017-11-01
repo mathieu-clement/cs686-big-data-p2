@@ -36,6 +36,14 @@ public class Observation {
         return result;
     }
 
+    public static Object[] getFeatures(String tdv, Feature[] features, Class<?>[] deserializationClasses) {
+        int[] indices = new int[features.length];
+        for (int i = 0; i < features.length; i++) {
+            indices[i] = features[i].getIndex();
+        }
+        return getFeatures(tdv, features, deserializationClasses);
+    }
+
     private static Object toObject(String s, Class<?> c) {
         if (c == String.class) return s;
         if (c == Float.class) return Float.parseFloat(s);
