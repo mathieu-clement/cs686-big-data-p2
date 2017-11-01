@@ -1,6 +1,5 @@
 package edu.usfca.cs.mr.hottest_temperature;
 
-import edu.usfca.cs.mr.util.Feature;
 import edu.usfca.cs.mr.util.Observation;
 import org.apache.hadoop.io.FloatWritable;
 import org.apache.hadoop.io.LongWritable;
@@ -19,17 +18,14 @@ public class HottestTemperatureMapper extends Mapper<LongWritable, Text, Text, F
 
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-        Object[] features = Observation.getFeatures(
-                value.toString(),
-                new Feature[]{TIMESTAMP, GEOHASH, TEMPERATURE_SURFACE},
-                new Class<?>[]{String.class, String.class, Float.class});
-        String timestamp = (String) features[0];
+        Observation observation = new Observation(value.toString(), TIMESTAMP, GEOHASH, TEMPERATURE_SURFACE);
+        String timestamp = observation.getFeature(TIMESTAMP, String.class);
         Date date = new Date(Long.parseLong(timestamp));
         String dateStr = DATE_FORMAT.format(date);
 
-        String geohash = (String) features[1];
+        String geohash = observation.getGeohash()
 
-        float temperature = (float) features[2]; // Kelvin
+        float temperature = observation.getFeature(TEMPERATURE_SURFACE, Float.class); // Kelvin
         temperature = temperature - 273.15f; // degrees Celsius
 
         context.write(

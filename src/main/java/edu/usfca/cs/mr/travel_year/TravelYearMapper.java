@@ -1,7 +1,6 @@
 package edu.usfca.cs.mr.travel_year;
 
 import com.google.common.collect.Sets;
-import edu.usfca.cs.mr.util.Feature;
 import edu.usfca.cs.mr.util.Observation;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
@@ -37,32 +36,29 @@ public class TravelYearMapper extends Mapper<LongWritable, Text, Text, Text> {
 
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-        Object[] features = Observation.getFeatures(
-                value.toString(),
-                new Feature[]{
-                        TIMESTAMP, GEOHASH, VISIBILITY_SURFACE, CATEGORICAL_FREEZING_RAIN_YES1_NO0_SURFACE,
-                        RELATIVE_HUMIDITY_ZERODEGC_ISOTHERM,
+        Observation observation = new Observation(value.toString(),
+                TIMESTAMP, GEOHASH, VISIBILITY_SURFACE, CATEGORICAL_FREEZING_RAIN_YES1_NO0_SURFACE,
+                RELATIVE_HUMIDITY_ZERODEGC_ISOTHERM,
 
-                        CATEGORICAL_RAIN_YES1_NO0_SURFACE, V_COMPONENT_OF_WIND_MAXIMUM_WIND,
-                        TEMPERATURE_SURFACE, SNOW_DEPTH_SURFACE, U_COMPONENT_OF_WIND_MAXIMUM_WIND
-                },
-                new Class<?>[]{String.class, String.class, Float.class, Boolean.class, Float.class,
-                        Boolean.class, Double.class, Float.class, Float.class, Double.class}
+                CATEGORICAL_RAIN_YES1_NO0_SURFACE, V_COMPONENT_OF_WIND_MAXIMUM_WIND,
+                TEMPERATURE_SURFACE, SNOW_DEPTH_SURFACE, U_COMPONENT_OF_WIND_MAXIMUM_WIND
         );
 
-        String geohash = (String) features[1];
+        String geohash = observation.getGeohash();
         String geohashPrefix = geohash.substring(0, 4);
         if (!PREFIXES.contains(geohashPrefix)) return; // Filter out irrelevant locations
 
-        String dayInYear = DATE_FORMAT.format(new Date(Long.parseLong((String) features[0])));
-        int visibility = (int) (float) features[2];
-        boolean rain = (boolean) features[3];
-        int humidity = (int) (float) features[4];
-        boolean freezingRain = (boolean) features[5];
-        double vWind = (double) features[6];
-        float temperature = (float) features[7];
-        float snowCover = (float) features[8];
-        double uWind = (double) features[9];
+        String dayInYear = DATE_FORMAT.format(new Date(Long.parseLong(
+                observation.getFeature(TIMESTAMP, String.class)
+        )));
+        int visibility = (int) (float) observation.getFeature(VISIBILITY_SURFACE, Float.class);
+        boolean rain = observation.getFeature(CATEGORICAL_RAIN_YES1_NO0_SURFACE, Boolean.class);
+        int humidity = (int) (float) observation.getFeature(RELATIVE_HUMIDITY_ZERODEGC_ISOTHERM, Float.class);
+        boolean freezingRain = observation.getFeature(CATEGORICAL_RAIN_YES1_NO0_SURFACE, Boolean.class);
+        double vWind = observation.getFeature(V_COMPONENT_OF_WIND_MAXIMUM_WIND, Double.class);
+        float temperature = observation.getFeature(TEMPERATURE_SURFACE, Float.class);;
+        float snowCover = observation.getFeature(SNOW_DEPTH_SURFACE, Float.class);;
+        double uWind = observation.getFeature(U_COMPONENT_OF_WIND_MAXIMUM_WIND, Double.class);
         double windSpeed = Math.sqrt(uWind * uWind + vWind * vWind); // http://colaweb.gmu.edu/dev/clim301/lectures/wind/wind-uv.html
 
         if (
