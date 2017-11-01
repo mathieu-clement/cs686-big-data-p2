@@ -105,12 +105,16 @@ On average, during the month of March 2015, the humidity was 22 %, making it the
 
 ### After graduating from USF, you found a startup that aims to provide personalized travel itineraries using big data analysis. Given your own personal preferences, build a plan for a year of travel across 5 locations. Or, in other words: pick 5 regions. What is the best time of year to visit them based on the dataset? ([travel_year](src/main/java/edu/usfca/cs/mr/travel_year/))
 
+#### Locations
+
 During this year of travel, I would like to visit:
  * dxfy: Halifax, Nova Scotia, in memory of flight SWR-111 that disappeared on September 2, 1998 in the waters of the Atlantic Ocean after an onboard fire,
  * dk2y: Nassau, Bahamas (near Miami, FL) to cheer up and enjoy some warmth while the continental US shivers,
  * dpxy: Niagara Falls (between Toronto and Rochester, NY) because it's romantic,
  * 9whp: Albuquerque, to see the sites where they filmed Breaking Bad,
  * 9xhv: Rocky Mountain National Park, Colorado, no justification needed.
+ 
+ #### Features
  
  I will choose the following features to determine when is a good time to visit:
   * Temperature (temperature_surface): 18-27 °C would be ideal ;
@@ -120,10 +124,25 @@ During this year of travel, I would like to visit:
   * Rain (categorical_rain_yes1_no0_surface): 0 ;
   * Freezing rain (categorical_freezing_rain_yes1_no0_surface): 0 ;
   * Visibility (visibility_surface): > 3000.
- 
+
+#### Wind speed
+
 To calculate the [wind speed](http://colaweb.gmu.edu/dev/clim301/lectures/wind/wind-uv.html) from the u and v vectors ("components") of the wind, we apply the formula:
 
 ![ws=sqrt(u^2+v^2](https://latex.codecogs.com/gif.latex?\box{ws}&space;=&space;\sqrt{u^2&space;&plus;&space;v^2)
+
+With this knowledge I plotted the distribution of the wind speed (considering "max wind"):
+
+![wind speed distribution](/images/wind_speed_distribution.png)
+
+and computed these values (unit is m/s):
+
+  - Mean: 30
+  - Standard deviation: 34
+  - Median: 28
+  - Quartile Q1: 18, Quartile Q3: 40, so 50 % of distribution between 18 and 40
+
+#### Extracting a column from tdv files
  
 By the way, sometimes it is not very obvious what kind of values we get. Is the percentage given as 20 or 0.20? For this I used the following:
 
