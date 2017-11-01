@@ -1,6 +1,7 @@
 package edu.usfca.cs.mr.travel_year;
 
 import com.google.common.collect.Sets;
+import edu.usfca.cs.mr.util.Feature;
 import edu.usfca.cs.mr.util.Observation;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
@@ -10,6 +11,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
+
+import static edu.usfca.cs.mr.util.Feature.*;
 
 public class TravelYearMapper extends Mapper<LongWritable, Text, Text, Text> {
 
@@ -36,8 +39,13 @@ public class TravelYearMapper extends Mapper<LongWritable, Text, Text, Text> {
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         Object[] features = Observation.getFeatures(
                 value.toString(),
-                new int[]{1, 2, 8, 10, 13,
-                        30, 38, 41, 51, 54},
+                new Feature[]{
+                        TIMESTAMP, GEOHASH, VISIBILITY_SURFACE, CATEGORICAL_FREEZING_RAIN_YES1_NO0_SURFACE,
+                        RELATIVE_HUMIDITY_ZERODEGC_ISOTHERM,
+
+                        CATEGORICAL_RAIN_YES1_NO0_SURFACE, V_COMPONENT_OF_WIND_MAXIMUM_WIND,
+                        TEMPERATURE_SURFACE, SNOW_DEPTH_SURFACE, U_COMPONENT_OF_WIND_MAXIMUM_WIND
+                },
                 new Class<?>[]{String.class, String.class, Float.class, Boolean.class, Float.class,
                         Boolean.class, Double.class, Float.class, Float.class, Double.class}
         );

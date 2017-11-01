@@ -1,6 +1,7 @@
 package edu.usfca.cs.mr.humidity_bay_area;
 
 import com.google.common.collect.Sets;
+import edu.usfca.cs.mr.util.Feature;
 import edu.usfca.cs.mr.util.Observation;
 import org.apache.hadoop.io.FloatWritable;
 import org.apache.hadoop.io.IntWritable;
@@ -12,6 +13,8 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Set;
+
+import static edu.usfca.cs.mr.util.Feature.*;
 
 public class HumidityBayAreaMapper extends Mapper<LongWritable, Text, IntWritable, FloatWritable> {
 
@@ -25,7 +28,7 @@ public class HumidityBayAreaMapper extends Mapper<LongWritable, Text, IntWritabl
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         Object[] features = Observation.getFeatures(value.toString(),
-                new int[]{1, 2, 13},
+                new Feature[]{TIMESTAMP, GEOHASH, RELATIVE_HUMIDITY_ZERODEGC_ISOTHERM},
                 new Class<?>[]{String.class, String.class, Float.class});
         String geohash = (String) features[1];
 
