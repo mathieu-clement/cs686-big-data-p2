@@ -26,7 +26,7 @@ The mini dataset contains 525,584 records for 03/14/2015 and 525,584 records for
         
 ### Are there any Geohashes that have snow depths greater than zero for the entire year? List them all. ([snow_depth](src/main/java/edu/usfca/cs/mr/snow_depth/))
 
-To answer this question, I  used feature #51 "snow_depth_surface", eliminated all geohashes that have one or more zero values (I consider zero, any measurement under 0.001", i.e. less than 1 mm).
+To answer this question, I  used feature #51 "snow_depth_surface", eliminated all geohashes that have one or more zero values.
 
 Here's the top 3:
 
