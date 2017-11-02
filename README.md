@@ -146,7 +146,7 @@ and computed these values (unit is m/s):
  
 By the way, sometimes it is not very obvious what kind of values we get. Is the percentage given as 20 or 0.20? For this I used the following:
 
-    cat nam_mini.tdv | awk '{print $30;}' | sort -n -S 80% | uniq
+    awk '{print $30;}' nam_mini.tdv | sort -n -S 80% | uniq
     
 This is for field 30, supposing it contains numerical data.
 
