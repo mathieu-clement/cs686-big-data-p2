@@ -27,7 +27,8 @@ ENDSSH
 echo "Launch job..."
 nam_files=/tmp/cs686/nam/nam_mini.tdv
 if [ "$3" != "--mini" ]; then
-    nam_files="`$(dirname $0)/list_nam_files.sh | sed 's/ /,/g'`"
+    #nam_files="`$(dirname $0)/list_nam_files.sh | sed 's/ /,/g'`"
+    nam_files="/tmp/cs686/nam/nam_2015*.tdv"
 fi
 
 ssh bass01 JOB=$job MAIN_CLASS=$main_class NAM_FILES="$nam_files" 'bash -s' <<'ENDSSH'
