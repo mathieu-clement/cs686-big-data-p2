@@ -5,8 +5,8 @@ import org.apache.hadoop.mapreduce.Reducer;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class WindFarmReducer extends Reducer<Text, Text, Text, Text> {
     @Override
@@ -22,33 +22,27 @@ public class WindFarmReducer extends Reducer<Text, Text, Text, Text> {
             windSpeeds.add(windSpeed);
         }
 
-        float temperature90 = percentile(temperatures, 90);
-        float windSpeed75 = percentile(windSpeeds, 75);
-//        if (temperature90 > 0f && windSpeed75 >= 18 && windSpeed75 <= 40) {
-            context.write(geohash, new Text("" + temperature90 + ':' + windSpeed75));
-//        }
+        Collections.sort(temperatures);
+        Collections.sort(windSpeeds);
+        float temperature10 = percentile(temperatures, 10); // 90 % of data is above
+        float windSpeed25 = percentile(windSpeeds, 25); // 75 % of the data is above
+        float windSpeed75 = percentile(windSpeeds, 75); // 75 % of the data is below
+        if (toCelsius(temperature10) > 0f && windSpeed25 > 17 && windSpeed75 < 40) {
+            context.write(geohash, new Text("" + temperature10 + ':' + windSpeed25 + ':' + windSpeed75));
+        }
     }
 
-    private static float percentile(List<Float> list, int percentile) {
-        List<Float> cumulated = new ArrayList<>();
-        float previous = 0f;
-        float total = 0f;
+    // precondition: list is sorted
+    static float percentile(List<Float> list, int percentile) {
+        int i = list.size() * percentile / 100;
 
-        for (float f : list) {
-            cumulated.add(previous + f);
-            total += f;
-            previous = f;
-        }
+        if (i < 0) i = 0;
+        else if (i >= list.size()) i = list.size() - 1;
 
-        float target = total * (percentile / 100f);
-        int i;
-        for (i = 0; i < cumulated.size(); i++) {
-            float f = cumulated.get(i);
-            if (f >= target) break;
-        }
-
-        return list.get(random.nextInt(list.size()));
+        return list.get(i);
     }
 
-    private static Random random = new Random();
+    private static float toCelsius(float kelvin) {
+        return kelvin - 273.15f;
+    }
 }
