@@ -2,7 +2,6 @@ package edu.usfca.cs.mr.wind_farm;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.ArrayWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
@@ -33,12 +32,12 @@ public class WindFarmJob {
             job.setReducerClass(WindFarmReducer.class);
             // Outputs from the Mapper.
             job.setMapOutputKeyClass(Text.class);
-            job.setMapOutputValueClass(ArrayWritable.class);
+            job.setMapOutputValueClass(Text.class);
             // Outputs from Reducer. It is sufficient to set only the following
             // two properties if the Mapper and Reducer has same key and value
             // types. It is set separately for elaboration.
             job.setOutputKeyClass(Text.class);
-            job.setOutputValueClass(ArrayWritable.class);
+            job.setOutputValueClass(Text.class);
             //LazyOutputFormat.setOutputFormatClass(job, TextOutputFormat.class);
             // path to input in HDFS
             FileInputFormat.addInputPaths(job, args[0]);
