@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static edu.usfca.cs.mr.util.Statistics.average;
+
 public class ClimateChartReducer extends Reducer<Text, Text, Text, Text> {
     @Override
     protected void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
@@ -37,12 +39,9 @@ public class ClimateChartReducer extends Reducer<Text, Text, Text, Text> {
         }
         float avgTemp = totalTemp / count;
 
-        float totalPrecipitations = 0f;
-        for (Float precipitation : precipitations) {
-            totalPrecipitations += precipitation;
-        }
+        float averagePrecipitation = average(precipitations);
 
         context.write(key, new Text(String.format("%.1f %.1f %.1f %.1f",
-                maxTemp, minTemp, totalPrecipitations, avgTemp)));
+                maxTemp, minTemp, averagePrecipitation, avgTemp)));
     }
 }
