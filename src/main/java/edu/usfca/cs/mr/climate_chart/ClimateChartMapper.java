@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import static edu.usfca.cs.mr.util.Feature.*;
+import static edu.usfca.cs.mr.util.Observation.toCelsius;
 
 public class ClimateChartMapper extends Mapper<LongWritable, Text, Text, Text> {
 
@@ -27,7 +28,7 @@ public class ClimateChartMapper extends Mapper<LongWritable, Text, Text, Text> {
         calendar.setTime(date);
         int month = calendar.get(Calendar.MONTH) + 1;
 
-        float temperature = obs.getFeature(TEMPERATURE_SURFACE, Float.class);
+        float temperature = toCelsius(obs.getFeature(TEMPERATURE_SURFACE, Float.class));
         float precipitations = obs.getFeature(PRECIPITABLE_WATER_ENTIRE_ATMOSPHERE, Float.class);
 
         context.write(new Text(geohashPrefix + ':' + month), new Text(
