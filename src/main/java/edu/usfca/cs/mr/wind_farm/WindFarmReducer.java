@@ -27,10 +27,10 @@ public class WindFarmReducer extends Reducer<Text, Text, Text, Text> {
         Collections.sort(temperatures);
         Collections.sort(windSpeeds);
         Collections.sort(snowDepths);
-        float temperatureAbove = percentile(temperatures, 10f); // 95 % of data is above
+        float temperatureAbove = percentile(temperatures, 10f); // 90 % of data is above
         temperatureAbove = toCelsius(temperatureAbove);
-        float windSpeedAbove = percentile(windSpeeds, 10f);
-        float windSpeedBelow = percentile(windSpeeds, 90f);
+        float windSpeedAbove = percentile(windSpeeds, 25f);
+        float windSpeedBelow = percentile(windSpeeds, 75f);
         float snowDepthBelow = percentile(snowDepths, 90f);
         if (temperatureAbove > 0f && windSpeedAbove > 17f && windSpeedBelow < 40f && snowDepthBelow < 0.01f) {
             context.write(geohash, new Text("" + temperatureAbove + ' ' + windSpeedAbove + ' ' + windSpeedBelow));
