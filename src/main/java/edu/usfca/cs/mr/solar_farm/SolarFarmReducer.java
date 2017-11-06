@@ -27,11 +27,11 @@ public class SolarFarmReducer extends Reducer<Text, Text, Text, Text> {
         Collections.sort(temperatures);
         Collections.sort(cloudCovers);
         Collections.sort(snowDepths);
-        float temperatureAbove = percentile(temperatures, 10f); // 95 % of data is above
+        float temperatureAbove = percentile(temperatures, 10f); // 90 % of data is above
         temperatureAbove = toCelsius(temperatureAbove);
-        float cloudCoverBelow = percentile(cloudCovers, 90f);
+        float cloudCoverBelow = percentile(cloudCovers, 75f);
         float snowDepthBelow = percentile(snowDepths, 90f);
-        if (temperatureAbove > 0f && cloudCoverBelow < 10f && snowDepthBelow < 0.01f) {
+        if (temperatureAbove > 0f && cloudCoverBelow < 20f && snowDepthBelow < 0.01f) {
             context.write(geohash, new Text("" + temperatureAbove + ' ' + cloudCoverBelow));
         }
     }
