@@ -185,6 +185,25 @@ Criteria for choosing the location of solar farms:
   - closer to the equator is better, simply because the sun is up longer, and that's also where you need the most air conditioning, which works on electricity
   - no snow! (you can heat the panels... but why waste energy on that if you can avoid it)
   - south oriented is better, but... we don't have this data.
+  
+#### Wind Farms
+
+![Wind farms map](/images/wind_farms.png)
+
+#### Solar Farms
+
+![Solar farms map](/images/solar_farms.png)
+
+The cloud cover corresponds to the 75th percentile, e.g. for the first example, the cloud cover was less than 18 % about 3/4 of the time. The temperature was over 4.7 °C during 328 days in the year 2015, i.e. 90 % of the time (-> 90th percentile).
+
+| Geohash | Location | Temperature (°C) | Cloud cover (%) |
+| --- | --- | ---: | ---: |
+| 9qj | Joshua Tree National Park, California | 4.7 | 18 |
+| 9mz | Phoenix, Arizona | 6.9 | 6 |
+| d74 | Kingston, Jamaica | 27.4 | 6 |
+
+### Wind + Solar Farms
+
 
 ## Deliverable II
 
