@@ -16,7 +16,7 @@ public class ClimateChartJob {
     public static void main(String[] args) {
         try {
             Configuration conf = new Configuration();
-            conf.set("geohash_prefix", /*args[2]*/"dnd");
+            conf.set("geohash_prefix", args[2]);
 
             Job job = Job.getInstance(conf, "climate_chart_job");// Current class.
             job.setJarByClass(ClimateChartJob.class);
