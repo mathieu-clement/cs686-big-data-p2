@@ -60,6 +60,7 @@ public class Observation {
         if (c == Double.class) return Double.parseDouble(s);
         if (c == Boolean.class) return "1".equals(s) || "1.0".equals(s);
         if (c == Integer.class) return Integer.parseInt(s);
+        if (c == Long.class) return Long.parseLong(s);
         if (c == SpatialRange.class) return Geohash.decodeHash(s);
         throw new IllegalArgumentException("Class " + c.getName() + " is not supported.");
     }
