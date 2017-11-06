@@ -31,7 +31,7 @@ public class SolarFarmReducer extends Reducer<Text, Text, Text, Text> {
         temperatureAbove = toCelsius(temperatureAbove);
         float cloudCoverBelow = percentile(cloudCovers, 90f);
         float snowDepthBelow = percentile(snowDepths, 90f);
-        if (temperatureAbove > 0f && cloudCoverBelow > 10f && snowDepthBelow < 0.01f) {
+        if (temperatureAbove > 0f && cloudCoverBelow < 10f && snowDepthBelow < 0.01f) {
             context.write(geohash, new Text("" + temperatureAbove + ' ' + cloudCoverBelow));
         }
     }
