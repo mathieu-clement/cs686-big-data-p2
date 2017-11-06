@@ -38,6 +38,9 @@ public class ClimateChartReducer extends Reducer<Text, Text, Text, Text> {
         float avgTemp = totalTemp / count;
 
         float totalPrecipitations = 0f;
+        for (Float precipitation : precipitations) {
+            totalPrecipitations += precipitation;
+        }
 
         context.write(key, new Text(String.format("%.1f %.1f %.1f %.1f",
                 maxTemp, minTemp, totalPrecipitations, avgTemp)));
