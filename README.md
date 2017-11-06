@@ -193,6 +193,7 @@ Criteria for choosing the location of solar farms:
 #### Solar Farms
 
 ![Solar farms map](/images/solar_farms.png)
+![Solar farms map closer look](/images/solar_farms2.png)
 
 The cloud cover corresponds to the 75th percentile, e.g. for the first example, the cloud cover was less than 18 % about 3/4 of the time. The temperature was over 4.7 °C during 328 days in the year 2015, i.e. 90 % of the time (-> 90th percentile).
 
