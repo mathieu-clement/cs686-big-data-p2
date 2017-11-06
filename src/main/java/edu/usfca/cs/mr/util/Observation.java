@@ -64,4 +64,8 @@ public class Observation {
         throw new IllegalArgumentException("Class " + c.getName() + " is not supported.");
     }
 
+    public static float toCelsius(float kelvin) {
+        return kelvin - 273.15f;
+    }
+
 }
