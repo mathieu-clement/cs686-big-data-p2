@@ -212,7 +212,7 @@ The cloud cover corresponds to the 75th percentile, e.g. for the first example, 
 | 9mz | Phoenix, Arizona | 6.9 | 6 |
 | d74 | Kingston, Jamaica | 27.4 | 6 |
 
-### Wind + Solar Farms
+#### Wind + Solar Farms
 
 | Geohash | Location | Temperature (°C) | Cloud cover (%) | Wind speed (m/s) |
 | --- | --- | ---: | ---: | :---: |
@@ -220,6 +220,9 @@ The cloud cover corresponds to the 75th percentile, e.g. for the first example, 
 | 9mz | Sonoran Desert, Arizona | 6.9 | 6 | 20 - 40 |
 | 9my | Algodones Dunes, California | 6.7 | 2 | 20 - 39 |
 
-## Deliverable II
+### Given a Geohash prefix, create a climate chart for the region. This includes high, low, and average temperatures, as well as monthly average rainfall (precipitation). ([climate_chart](src/main/java/edu/usfca/cs/mr/climate_chart/))
+
+![San Francisco climate chart](/images/sanfrancisco.climate.png)
+
 
 Responses go here.
