@@ -167,7 +167,7 @@ This is for field 30, supposing it contains numerical data.
 
 ![Travel year](/images/travel_year.png)
   
-### Your travel startup is so successful that you move on to green energy; here, you want to help power companies plan out the locations of solar and wind farms across North America. Write a MapReduce job that locates the top 3 places for solar and wind farms, as well as a combination of both (solar + wind farm). You will report a total of 9 Geohashes as well as their relevant attributes (for example, cloud cover and wind speeds). ([wind_farm](src/main/java/edu/usfca/cs/mr/wind_farm/)) ([solar_farm](src/main/java/edu/usfca/cs/mr/solar_farm/))
+### [Your travel startup](#green-energy) is so successful that you move on to green energy; here, you want to help power companies plan out the locations of solar and wind farms across North America. Write a MapReduce job that locates the top 3 places for solar and wind farms, as well as a combination of both (solar + wind farm). You will report a total of 9 Geohashes as well as their relevant attributes (for example, cloud cover and wind speeds). ([wind_farm](src/main/java/edu/usfca/cs/mr/wind_farm/)) ([solar_farm](src/main/java/edu/usfca/cs/mr/solar_farm/))
 
 Criteria for choosing the location of wind farms:
   - wind speed (duh!) : see u and v component of wind and formula for wind speed above. A wind turbine have a cut-in power of 3.5 m/s, and produce their maximum energy at 10-15 m/s. At 25 m/s the turbine must be cut-off or it will break. After studying the distribution of the maximum wind speed, we'll limit our search to locations where the maximum wind observed was between 18 and 40 m/s 75 % of the time. [Source](http://www.level.org.nz/energy/renewable-electricity-generation/wind-turbine-systems/)
@@ -223,6 +223,3 @@ The cloud cover corresponds to the 75th percentile, e.g. for the first example, 
 ### Given a Geohash prefix, create a climate chart for the region. This includes high, low, and average temperatures, as well as monthly average rainfall (precipitation). ([climate_chart](src/main/java/edu/usfca/cs/mr/climate_chart/))
 
 ![San Francisco climate chart](/images/sanfrancisco.climate.png)
-
-
-Responses go here.
